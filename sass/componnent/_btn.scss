@@ -1,0 +1,5 @@
+.btn {
+  cursor: pointer;
+  outline: none;
+  @include hover-bg-active(blue, red);
+}

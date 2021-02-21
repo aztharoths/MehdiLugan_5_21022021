@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <script
+      src="https://kit.fontawesome.com/8290091d9c.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Orinico : Mon Panier</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="../index.html"
+          ><img
+            src="../images/logo.png"
+            width="300"
+            height="100"
+            alt="Logo Orinoco"
+        /></a>
+      </div>
+      <nav>
+        <a href="../index.html">Accueil</a>
+        <a href="./mon-panier.html">Mon Panier</a>
+      </nav>
+    </header>
+    <main class="main">
+      <section class="recap"></section>
+      <section class="formulaire">
+        <h2>Passer ma commande</h2>
+        <form action="./mon-panier.html" method="POST">
+          <fieldset class="contact">
+            <legend>Coordonnées</legend>
+            <label for="name">Nom :</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Lugan"
+              required
+            />
+            <label for="first-name">Prénom :</label>
+            <input
+              type="text"
+              id="first-name"
+              name="first-name"
+              required
+              placeholder="Mehdi"
+            />
+            <label for="birth-date">Date de naissance :</label>
+            <input
+              type="date"
+              name="birth-date"
+              id="birth-date"
+              required
+              placeholder="05/05/1991"
+            />
+            <label for="mail">E-mail :</label>
+            <input
+              type="email"
+              name="mail"
+              id="mail"
+              required
+              placeholder="mehdi.lugan@gmail.com"
+            />
+          </fieldset>
+          <fieldset class="address">
+            <legend>Adresse de livraison</legend>
+            <label for="address">Rue :</label>
+            <input
+              id="address"
+              type="text"
+              name="address"
+              row="2"
+              required
+              placeholder="187 rue du Général de gaulle"
+            />
+            <label for="postal">Code postal :</label>
+            <input
+              type="number"
+              name="postal"
+              id="postal"
+              required
+              placeholder="69530"
+            />
+            <label for="city">Ville :</label>
+            <input
+              type="text"
+              name="city"
+              id="city"
+              required
+              placeholder="Brignais"
+            />
+          </fieldset>
+          <fieldset class="current-date">
+            <legend>Date de commande</legend>
+            <label for="command-date">Date :</label>
+            <input type="datetime-local" />
+          </fieldset>
+          <div class="buttons">
+            <input type="submit" value="Passer ma commande" />
+            <input type="reset" value="Annuler la saisie" />
+            <input type="button" value="Annuler la commande" />
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="footer">
+      <a href="#">Nous contacter</a>
+      <a href="#">À Propos</a>
+    </footer>
+  </body>
+</html>

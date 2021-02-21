@@ -1,0 +1,39 @@
+.header {
+  @include center;
+  background-color: $clr-secondary;
+  padding: 20px 0;
+  &__logo {
+    width: calc(100% - 450px);
+    a:hover,
+    a:active,
+    a:focus {
+      & > img {
+        transform: scale(1.2);
+        transition: transform 300ms;
+      }
+    }
+    img {
+      @include size(350px, 100px);
+      transform: scale(1);
+      transition: transform 300ms;
+    }
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    font-size: 1.5rem;
+    a {
+      padding: 0 10px;
+      transition: all 300ms;
+    }
+    a:hover,
+    a:active,
+    a:focus {
+      color: $clr-white;
+      background-color: $clr-primary;
+      border-radius: 20px;
+      transition: all 300ms;
+    }
+  }
+}

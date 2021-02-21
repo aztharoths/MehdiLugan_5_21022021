@@ -1,0 +1,253 @@
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#bloc_page {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  font-family: "Architects Daughter", cursive;
+  color: #9356dc;
+}
+
+.btn {
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  z-index: 1;
+  background: red;
+  color: blue;
+  transition: color 300ms;
+}
+.btn::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: blue;
+  opacity: 0;
+  transition: 300ms;
+}
+.btn:hover {
+  color: red;
+  transition: color 300ms;
+}
+.btn:hover::after {
+  opacity: 1;
+  transition: 300ms;
+}
+.btn:active, .btn:focus {
+  color: #cc0000;
+}
+.btn:active::after, .btn:focus::after {
+  background: #0000cc;
+  opacity: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3e9f1;
+  padding: 20px 0;
+}
+.header__logo {
+  width: calc(100% - 450px);
+}
+.header__logo a:hover > img,
+.header__logo a:active > img,
+.header__logo a:focus > img {
+  transform: scale(1.2);
+  transition: transform 300ms;
+}
+.header__logo img {
+  width: 350px;
+  height: 100px;
+  transform: scale(1);
+  transition: transform 300ms;
+}
+.header nav {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  font-size: 1.5rem;
+}
+.header nav a {
+  padding: 0 10px;
+  transition: all 300ms;
+}
+.header nav a:hover,
+.header nav a:active,
+.header nav a:focus {
+  color: #fff;
+  background-color: #9356dc;
+  border-radius: 20px;
+  transition: all 300ms;
+}
+
+.footer {
+  background-color: #f3e9f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  margin-top: 20px;
+}
+.footer a {
+  margin: 0 40px;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  transition: all 300ms;
+}
+.footer a:hover,
+.footer a:active,
+.footer a:focus {
+  color: #fff;
+  background-color: #9356dc;
+  border-radius: 20px;
+  transition: all 300ms;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.main h1 {
+  width: 80%;
+  text-align: center;
+  background-color: #f3e9f1;
+  border: 2px solid #9356dc;
+  box-shadow: 5px 5px 20px #782cd3;
+  padding: 0 20px;
+  border-radius: 50px;
+}
+
+.item-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item-list .item {
+  border: 5px solid #9356dc;
+  background-color: #f3e9f1;
+  box-shadow: 5px 5px 20px #782cd3;
+  border-radius: 50px;
+  margin: 15px auto;
+  display: flex;
+  width: 60%;
+  height: 400px;
+  transform: scale(1);
+  transition: transform 300ms;
+}
+.item-list .item:hover, .item-list .item:active, .item-list .item:focus {
+  transform: scale(1.2);
+  transition: transform 300ms;
+  z-index: 1;
+}
+.item-list .item__figure {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.item-list .item__figure--reverse {
+  flex-direction: row-reverse;
+}
+.item-list .item__figure__img {
+  width: 35%;
+  height: 80%;
+  object-fit: cover;
+  border: solid 2px #9356dc;
+  border-radius: 50px;
+}
+.item-list .item__figure__desc {
+  width: 55%;
+  height: 80%;
+  border: 2px solid #000;
+  border-radius: 50px;
+  padding: 0 50px;
+}
+
+.formulaire {
+  width: 80%;
+  background-color: #f3e9f1;
+  margin: 10px auto;
+}
+.formulaire h2 {
+  font-size: 2.5rem;
+  text-align: center;
+}
+.formulaire form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.formulaire form fieldset {
+  display: flex;
+  flex-direction: column;
+}
+.formulaire form fieldset.contact {
+  width: 40%;
+}
+.formulaire form fieldset.address {
+  width: 40%;
+  justify-content: space-around;
+}
+.formulaire form fieldset.current-date {
+  width: 40%;
+}
+.formulaire form fieldset legend {
+  font-size: 2rem;
+}
+.formulaire form fieldset label {
+  font-size: 1.5rem;
+}
+.formulaire form fieldset input {
+  width: 80%;
+  height: 50px;
+  font-size: 1.2rem;
+}
+.formulaire form .buttons {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.formulaire form .buttons input {
+  margin: 0 15px;
+  font-size: 1.2rem;
+  background-color: #f3e9f1;
+  border-color: #9356dc;
+  border-radius: 10px;
+}
+.formulaire form .buttons input:hover,
+.formulaire form .buttons input:active,
+.formulaire form .buttons input:focus {
+  color: #fff;
+  background-color: #9356dc;
+}
+
+/*# sourceMappingURL=style.css.map */

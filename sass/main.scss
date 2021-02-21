@@ -1,0 +1,24 @@
+//UTILS
+
+@import "./utils/variables";
+@import "./utils/mixins";
+@import "./utils/functions";
+@import "./utils/animations";
+
+//BASE
+
+@import "./base/base";
+@import "./base/typography";
+
+//COMPONNENT
+@import "./componnent/btn";
+
+//LAYOUT
+
+@import "./layout/header";
+@import "./layout/footer";
+
+//PAGES
+
+@import "./pages/index";
+@import "./pages/mon-panier";
