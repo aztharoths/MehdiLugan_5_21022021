@@ -1,4 +1,4 @@
-@function lightness-shift($colour) {
+@function lightness-shift($colour: $clr-primary) {
   @if (lightness($colour) < 25%) {
     @return lighten($colour, 10%);
   } @else {

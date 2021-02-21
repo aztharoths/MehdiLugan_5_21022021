@@ -16,9 +16,12 @@
 //LAYOUT
 
 @import "./layout/header";
+@import "./layout/main";
 @import "./layout/footer";
 
 //PAGES
 
 @import "./pages/index";
+@import "./pages/produit";
 @import "./pages/mon-panier";
+@import "./pages/confirmation-commande";

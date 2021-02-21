@@ -39,17 +39,8 @@
       @include center;
       input {
         margin: 0 15px;
-        font-size: 1.2rem;
-        background-color: $clr-secondary;
-        border-color: $clr-primary;
-        border-radius: 10px;
-      }
-      input:hover,
-      input:active,
-      input:focus {
-        color: $clr-white;
-        background-color: $clr-primary;
-      }
+        font-size: 1.2rem;        
+      }      
     }
   }
 }
