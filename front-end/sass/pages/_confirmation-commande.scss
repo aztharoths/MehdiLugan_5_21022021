@@ -1,0 +1,27 @@
+.confirmation {
+  @include center;
+  flex-direction: column;
+  width: 100%;
+}
+.recapitulatif,
+.thanks {
+  background-color: $clr-secondary;
+  border-radius: 20px;
+  box-shadow: 2px 2px 10px lightness-shift($clr-primary);
+  width: 80%;
+  margin: 20px 0;
+  h2 {
+    font-size: 2rem;
+    margin-left: 10px;
+  }
+  p {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    span {
+      font-style: italic;
+    }
+  }
+}
+.return {
+  padding: 0 10px;
+}

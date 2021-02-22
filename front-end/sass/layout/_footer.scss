@@ -1,0 +1,10 @@
+.footer {
+  background-color: $clr-secondary;
+  @include center;
+  @include size(100%, 100px);
+  margin-top: 20px;
+  a {
+    margin: 0 40px;
+    padding: 10px 15px;
+  }
+}

@@ -1,0 +1,38 @@
+.product {
+  @include center;
+  border: 2px solid $clr-primary;
+  @include size(80%, 600px);
+  border-radius: 50px;
+  background-color: $clr-secondary;
+  padding: 20px 30px;
+  #img-product {
+    @include size(60%, 100%);
+    img {
+      @include size(100%);
+      object-fit: cover;
+      border-radius: 50px 0 0 50px;
+    }
+  }
+  .description {
+    @include size(40%, 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border: 2px solid $clr-white;
+    border-radius: 0 50px 50px 0;
+    padding-left: 20px;
+    h2 {
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.5rem;
+      option {
+        font-size: 1.5rem;
+      }
+    }
+    .btn {
+      width: 80%;
+      align-self: center;
+    }
+  }
+}
