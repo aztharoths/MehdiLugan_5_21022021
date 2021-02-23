@@ -2,7 +2,7 @@
 const displayItemList = document.querySelector("#itemList");
 
 //création d'une carte pour un item
-const addItem = (itemUrlImg, itemName, itemDescription) => {
+const addItem = (itemType, item_id, itemUrlImg, itemName, itemDescription) => {
   // Modele d'une carte
   const addItem = `<figure class="item-list__item">
             <img
@@ -17,7 +17,7 @@ const addItem = (itemUrlImg, itemName, itemDescription) => {
               </p>
               <a
                 class="item-list__item__desc__btn btn"
-                href="./front-end/pages/produit.html"
+                href="./front-end/pages/produit.html?type=${itemType}&id=${item_id}"
                 >Voir le produit</a
               >
             </figcaption>
@@ -27,7 +27,7 @@ const addItem = (itemUrlImg, itemName, itemDescription) => {
 };
 
 // récupération des informations et création des cartes
-const getItem = (url) => {
+const getItem = (url, itemType) => {
   fetch(url).then(async (response) => {
     try {
       const itemsList = await response.json();
@@ -36,6 +36,8 @@ const getItem = (url) => {
       //création d'autant de cartes que d'items trouvés dans le tableau
       for (i = 0; i < itemsList.length; i++) {
         addItem(
+          itemType,
+          itemsList[i]._id,
           itemsList[i].imageUrl,
           itemsList[i].name,
           itemsList[i].description
@@ -55,14 +57,16 @@ const teddiesUrl = "http://localhost:3000/api/teddies";
 const camUrl = "http://localhost:3000/api/cameras";
 const oakUrl = "http://localhost:3000/api/furniture";
 
+const itemsType = ["teddies", "cameras", "furniture"];
+
 teddyButton.addEventListener("click", (e) => {
-  getItem(teddiesUrl);
+  getItem(teddiesUrl, itemsType[0]);
 });
 
 camButton.addEventListener("click", (e) => {
-  getItem(camUrl);
+  getItem(camUrl, itemsType[1]);
 });
 
 oakButton.addEventListener("click", (e) => {
-  getItem(oakUrl);
+  getItem(oakUrl, itemsType[2]);
 });
