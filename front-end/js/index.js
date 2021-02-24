@@ -2,7 +2,14 @@
 const displayItemList = document.querySelector("#itemList");
 
 //création d'une carte pour un item
-const addItem = (itemType, item_id, itemUrlImg, itemName, itemDescription) => {
+const addItem = (
+  itemType,
+  itemOptions,
+  item_id,
+  itemUrlImg,
+  itemName,
+  itemDescription
+) => {
   // Modele d'une carte
   const addItem = `<figure class="item-list__item">
             <img
@@ -17,7 +24,7 @@ const addItem = (itemType, item_id, itemUrlImg, itemName, itemDescription) => {
               </p>
               <a
                 class="item-list__item__desc__btn btn"
-                href="./front-end/pages/produit.html?type=${itemType}&id=${item_id}"
+                href="./front-end/pages/produit.html?type=${itemType}&options=${itemOptions}&id=${item_id}"
                 >Voir le produit</a
               >
             </figcaption>
@@ -27,7 +34,7 @@ const addItem = (itemType, item_id, itemUrlImg, itemName, itemDescription) => {
 };
 
 // récupération des informations et création des cartes
-const getItem = (url, itemType) => {
+const getItem = (url, itemType, itemOptions) => {
   fetch(url).then(async (response) => {
     try {
       const itemsList = await response.json();
@@ -37,6 +44,7 @@ const getItem = (url, itemType) => {
       for (i = 0; i < itemsList.length; i++) {
         addItem(
           itemType,
+          itemOptions,
           itemsList[i]._id,
           itemsList[i].imageUrl,
           itemsList[i].name,
@@ -58,15 +66,16 @@ const camUrl = "http://localhost:3000/api/cameras";
 const oakUrl = "http://localhost:3000/api/furniture";
 
 const itemsType = ["teddies", "cameras", "furniture"];
+const itemsOptions = ["colors", "lenses", "varnish"];
 
 teddyButton.addEventListener("click", (e) => {
-  getItem(teddiesUrl, itemsType[0]);
+  getItem(teddiesUrl, itemsType[0], itemsOptions[0]);
 });
 
 camButton.addEventListener("click", (e) => {
-  getItem(camUrl, itemsType[1]);
+  getItem(camUrl, itemsType[1], itemsOptions[1]);
 });
 
 oakButton.addEventListener("click", (e) => {
-  getItem(oakUrl, itemsType[2]);
+  getItem(oakUrl, itemsType[2], itemsOptions[2]);
 });

@@ -1,46 +1,63 @@
-.formulaire {
-  width: 80%;
-  background-color: $clr-secondary;
-  margin: 10px auto;
-  h2 {
-    font-size: 2.5rem;
-    text-align: center;
+.item {
+  @include size(70%, 800px);
+  border: 3px solid $clr-primary;
+  border-radius: 20px;
+  @include center;
+  flex-direction: column;
+  box-shadow: 2px 2px 20px lightness-shift($clr-primary);
+  &__img {
+    @include size(100%, 60%);
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
   }
-  form {
+  &__desc {
+    @include size(100%, 40%);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    fieldset {
+    border-top: 3px solid $clr-primary;
+    &__heading {
+      @include size(100%, 25%);
+      @include center;
+      font-size: 2rem;
+    }
+    &__txt {
+      @include size(100%, 25%);
+      font-size: 1.5rem;
+      padding: 0px 10px;
+      text-align: center;
+    }
+    &__options {
+      @include size(50%);
+      font-size: 1.5rem;
       display: flex;
-      flex-direction: column;
-      &.contact {
-        width: 40%;
+      flex-wrap: wrap;
+      align-items: center;
+      &__name {
+        font-size: 2rem;
+        @include size(50%, 25%);
+        padding-left: 50px;
       }
-      &.address {
-        width: 40%;
-        justify-content: space-around;
+      &__selector {
+        font-size: 1.5rem;
+        border: 2px solid $clr-primary;
+        border-radius: 20px;
+        @include size(50%, 25%);
+        &__selection {
+        }
       }
-      &.current-date {
-        width: 40%;
-      }
-      legend {
+      &__price {
+        @include size(100%, 50%);
+        @include center;
         font-size: 2rem;
       }
-      label {
-        font-size: 1.5rem;
-      }
-      input {
-        @include size(80%, 50px);
-        font-size: 1.2rem;
-      }
     }
-    .buttons {
-      width: 40%;
+
+    &__btn-div {
       @include center;
-      input {
-        margin: 0 15px;
-        font-size: 1.2rem;        
-      }      
+      @include size(50%);
+      &__btn {
+        padding: 0 20px;
+      }
     }
   }
 }

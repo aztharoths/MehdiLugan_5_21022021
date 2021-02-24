@@ -207,54 +207,83 @@
   align-items: center;
 }
 
-.formulaire {
-  width: 80%;
-  background-color: #f3e9f1;
-  margin: 10px auto;
-}
-.formulaire h2 {
-  font-size: 2.5rem;
-  text-align: center;
-}
-.formulaire form {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-.formulaire form fieldset {
-  display: flex;
-  flex-direction: column;
-}
-.formulaire form fieldset.contact {
-  width: 40%;
-}
-.formulaire form fieldset.address {
-  width: 40%;
-  justify-content: space-around;
-}
-.formulaire form fieldset.current-date {
-  width: 40%;
-}
-.formulaire form fieldset legend {
-  font-size: 2rem;
-}
-.formulaire form fieldset label {
-  font-size: 1.5rem;
-}
-.formulaire form fieldset input {
-  width: 80%;
-  height: 50px;
-  font-size: 1.2rem;
-}
-.formulaire form .buttons {
-  width: 40%;
+.item {
+  width: 70%;
+  height: 800px;
+  border: 3px solid #9356dc;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  box-shadow: 2px 2px 20px #782cd3;
 }
-.formulaire form .buttons input {
-  margin: 0 15px;
-  font-size: 1.2rem;
+.item__img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+.item__desc {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 3px solid #9356dc;
+}
+.item__desc__heading {
+  width: 100%;
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.item__desc__txt {
+  width: 100%;
+  height: 25%;
+  font-size: 1.5rem;
+  padding: 0px 10px;
+  text-align: center;
+}
+.item__desc__options {
+  width: 50%;
+  height: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.item__desc__options__name {
+  font-size: 2rem;
+  width: 50%;
+  height: 25%;
+  padding-left: 50px;
+}
+.item__desc__options__selector {
+  font-size: 1.5rem;
+  border: 2px solid #9356dc;
+  border-radius: 20px;
+  width: 50%;
+  height: 25%;
+}
+.item__desc__options__price {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.item__desc__btn-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+.item__desc__btn-div__btn {
+  padding: 0 20px;
 }
 
 .confirmation {
