@@ -28,7 +28,7 @@ const addItem = (itemUrlImg, itemName, itemDescription, price) => {
     </select>
     <p class="item__desc__options__price">Prix :&nbsp;<span>${price}</span> € </p>
     </form>        
-    <div class="item__desc__btn-div"> <button type="button" class="item__desc__btn-div__btn btn" href="">
+    <div class="item__desc__btn-div"> <button type="button" class="item__desc__btn-div__btn btn" id="addToShoppingListButton">
     Ajouter au Panier
   </button> </div>
     
@@ -90,8 +90,7 @@ const getOptions = async (optionsName) => {
         displayOptionsName.innerHTML = "Vernis :&nbsp;";
         for (i = 0; i < item.varnish.length; i++) addOption(item.varnish[i]);
       }
-
-      console.log();
+      return item;
     } catch (e) {
       console.error(e);
     }
@@ -100,4 +99,62 @@ const getOptions = async (optionsName) => {
   }
 };
 
-getOptions(optionsItem);
+//---------------------------------GESTION DU PANIER----------------------------------------//
+
+//Ajouter un produit au panier
+
+const addItemToShoppingList = async () => {
+  try {
+    const item = await getOptions(optionsItem);
+    try {
+      // selectionne le bouton "Ajouter au panier" crée via add Item
+      const addToShoppingListButton = document.querySelector(
+        "#addToShoppingListButton"
+      );
+      // Action à effectuer au clic du bouton
+      addToShoppingListButton.addEventListener("click", (event) => {
+        //Récupération de l'option choisie
+        const optionSelected = document.querySelector("#itemOptions").value;
+        //Récupération des informations du produit
+        const itemSelected = {
+          itemSelected_id: item._id,
+          itemSelectedName: item.name,
+          itemSelectedOption: optionSelected,
+          itemSelectedPrice: item.price / 100,
+          amout: "1",
+        };
+        //Récupération des données du localstorage pour le tableau "savedItem"
+        const savedItems = JSON.parse(localStorage.getItem("savedItem"));
+        //afficher une alerte
+        if (
+          //si l'usager confirme
+          window.confirm(
+            `Vous avez selectionné ${item.name} et ${optionSelected} voulez vous confirmer ?`
+          )
+        ) {
+          //je vérifie qu'il y ai le tableau dans le localstorage
+          if (savedItems) {
+            //si il y est, j'insère mon produit dans le tableau
+            savedItems.push(itemSelected);
+            localStorage.setItem("savedItem", JSON.stringify(savedItems));
+          } else {
+            //si non, je le crée et j'insère mon produit dedans.
+            const savedItems = [];
+            savedItems.push(itemSelected);
+            localStorage.setItem("savedItem", JSON.stringify(savedItems));
+          } //je redirige l'usager vers le panier
+          window.location.href = "./mon-panier.html";
+        } else {
+          //si l'usager refuse, je le redirige vers l'accueil
+          window.location.href = "../../index.html";
+        }
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+window.onload = addItemToShoppingList();

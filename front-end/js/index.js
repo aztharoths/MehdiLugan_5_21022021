@@ -79,3 +79,5 @@ camButton.addEventListener("click", (e) => {
 oakButton.addEventListener("click", (e) => {
   getItem(oakUrl, itemsType[2], itemsOptions[2]);
 });
+
+window.onload = getItem(teddiesUrl, itemsType[0], itemsOptions[0]);
