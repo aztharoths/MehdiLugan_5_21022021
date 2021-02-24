@@ -1,63 +1,56 @@
-.item {
-  @include size(70%, 800px);
-  border: 3px solid $clr-primary;
+.shopping-list {
+  margin-top: 30px;
+  width: 90%;
+  border: 2px solid $clr-primary;
   border-radius: 20px;
+  box-shadow: 2px 2px 20px lightness-shift($clr-primary);
+  background-color: $clr-secondary;
   @include center;
   flex-direction: column;
-  box-shadow: 2px 2px 20px lightness-shift($clr-primary);
-  &__img {
-    @include size(100%, 60%);
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
+  &__heading {
+    padding: 20px;
   }
-  &__desc {
-    @include size(100%, 40%);
+  &__display-items-selected {
+    width: 90%;
     display: flex;
     flex-wrap: wrap;
-    border-top: 3px solid $clr-primary;
-    &__heading {
-      @include size(100%, 25%);
-      @include center;
-      font-size: 2rem;
-    }
-    &__txt {
-      @include size(100%, 25%);
-      font-size: 1.5rem;
-      padding: 0px 10px;
-      text-align: center;
-    }
-    &__options {
-      @include size(50%);
-      font-size: 1.5rem;
+    justify-content: space-around;
+    &__items-selected {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      &__name {
-        font-size: 2rem;
-        @include size(50%, 25%);
-        padding-left: 50px;
+      @include size(45%, 300px);
+      border: solid 2px $clr-primary;
+      margin: 20px 0;
+      border-radius: 20px;
+      box-shadow: 2px 2px 10px lightness-shift($clr-primary);
+      &__img {
+        @include size(65%, 100%);
+        border-radius: 20px 0 0 20px;
+        object-fit: cover;
       }
-      &__selector {
-        font-size: 1.5rem;
-        border: 2px solid $clr-primary;
-        border-radius: 20px;
-        @include size(50%, 25%);
-        &__selection {
+      &__desc {
+        @include size(35%, 100%);
+        border-left: 2px solid $clr-primary;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        &__btn {
+          @include size(60px);
+          border-radius: 50%;
         }
       }
-      &__price {
-        @include size(100%, 50%);
-        @include center;
-        font-size: 2rem;
-      }
     }
-
-    &__btn-div {
+  }
+  &__total {
+    @include size(80%, 100px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    &__heading,
+    &__price {
+      @include size(40%, 50%);
       @include center;
-      @include size(50%);
-      &__btn {
-        padding: 0 20px;
-      }
+      font-size: 2rem;
     }
   }
 }

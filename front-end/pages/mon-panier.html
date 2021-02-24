@@ -9,12 +9,15 @@
       href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/style.css" />
-
-    <script
-      src="https://kit.fontawesome.com/8290091d9c.js"
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+      integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
       crossorigin="anonymous"
-    ></script>
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/panier.js" defer></script>
+
     <title>Orinico : Mon Panier</title>
   </head>
   <body>
@@ -35,7 +38,67 @@
         </nav>
       </header>
       <main class="main">
-        <section class="recap"></section>
+        <h1><span id="">1</span> article(s) dans mon panier</h1>
+        <section id="shoppingList" class="shopping-list">
+          <h2 class="shopping-list__heading">Récapitulatif de ma commande</h2>
+          <div id="" class="shopping-list__display-items-selected">
+            <figure
+              class="shopping-list__display-items-selected__items-selected"
+              id=""
+            >
+              <img
+                class="shopping-list__display-items-selected__items-selected__img"
+                src="../../back-end/images/teddy_1.jpg"
+                alt=""
+              />
+              <figcaption
+                class="shopping-list__display-items-selected__items-selected__desc"
+              >
+                <h3
+                  class="shopping-list__display-items-selected__items-selected__desc__name"
+                  id=""
+                >
+                  Nom
+                </h3>
+                <p
+                  class="shopping-list__display-items-selected__items-selected__desc__option"
+                  id=""
+                >
+                  Option
+                </p>
+                <p
+                  class="shopping-list__display-items-selected__items-selected__desc__amount"
+                >
+                  Quantité :&nbsp; <span id="">1</span>
+                </p>
+                <p
+                  class="shopping-list__display-items-selected__items-selected__desc__price-u"
+                >
+                  Prix unitaire :&nbsp; <span id="">30</span>&nbsp;€
+                </p>
+                <p
+                  class="shopping-list__display-items-selected__items-selected__desc__price-t"
+                >
+                  Sous-total :&nbsp; <span id="">30</span>&nbsp;€
+                </p>
+                <button
+                  class="shopping-list__display-items-selected__items-selected__desc__btn btn"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="shopping-list__total">
+            <h3 class="shopping-list__total__heading">
+              Total :&nbsp;<span>1</span>&nbsp;article(s)
+            </h3>
+            <p class="shopping-list__total__price">
+              <span id="">30</span>&nbsp;€
+            </p>
+          </div>
+        </section>
         <section class="formulaire">
           <h2>Passer ma commande</h2>
           <form action="./mon-panier.html" method="POST">
