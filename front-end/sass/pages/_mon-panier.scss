@@ -38,6 +38,11 @@
           @include size(60px);
           border-radius: 50%;
         }
+        &__btn:hover > i,
+        &__btn:focus > i,
+        &__btn:active > i {
+          color: $clr-secondary;
+        }
       }
     }
   }
@@ -52,5 +57,17 @@
       @include center;
       font-size: 2rem;
     }
+  }
+}
+
+.oops {
+  margin-top: 10px;
+  @include size(90%, 58vh);
+  &__img {
+    @include size(100%);
+    object-fit: cover;
+    border: solid 2px $clr-primary;
+    border-radius: 20px;
+    box-shadow: 2px 2px 20px lightness-shift($clr-primary);
   }
 }

@@ -117,11 +117,10 @@ const addItemToShoppingList = async () => {
         const optionSelected = document.querySelector("#itemOptions").value;
         //Récupération des informations du produit
         const itemSelected = {
-          itemSelected_id: item._id,
+          itemSelectedImageUrl: item.imageUrl,
           itemSelectedName: item.name,
           itemSelectedOption: optionSelected,
           itemSelectedPrice: item.price / 100,
-          amout: "1",
         };
         //Récupération des données du localstorage pour le tableau "savedItem"
         const savedItems = JSON.parse(localStorage.getItem("savedItem"));

@@ -38,64 +38,23 @@
         </nav>
       </header>
       <main class="main">
-        <h1><span id="">1</span> article(s) dans mon panier</h1>
-        <section id="shoppingList" class="shopping-list">
+        <h1>
+          <span id="displayHeadingItemsNumber">1</span> article(s) dans mon
+          panier
+        </h1>
+        <section class="shopping-list">
           <h2 class="shopping-list__heading">Récapitulatif de ma commande</h2>
-          <div id="" class="shopping-list__display-items-selected">
-            <figure
-              class="shopping-list__display-items-selected__items-selected"
-              id=""
-            >
-              <img
-                class="shopping-list__display-items-selected__items-selected__img"
-                src="../../back-end/images/teddy_1.jpg"
-                alt=""
-              />
-              <figcaption
-                class="shopping-list__display-items-selected__items-selected__desc"
-              >
-                <h3
-                  class="shopping-list__display-items-selected__items-selected__desc__name"
-                  id=""
-                >
-                  Nom
-                </h3>
-                <p
-                  class="shopping-list__display-items-selected__items-selected__desc__option"
-                  id=""
-                >
-                  Option
-                </p>
-                <p
-                  class="shopping-list__display-items-selected__items-selected__desc__amount"
-                >
-                  Quantité :&nbsp; <span id="">1</span>
-                </p>
-                <p
-                  class="shopping-list__display-items-selected__items-selected__desc__price-u"
-                >
-                  Prix unitaire :&nbsp; <span id="">30</span>&nbsp;€
-                </p>
-                <p
-                  class="shopping-list__display-items-selected__items-selected__desc__price-t"
-                >
-                  Sous-total :&nbsp; <span id="">30</span>&nbsp;€
-                </p>
-                <button
-                  class="shopping-list__display-items-selected__items-selected__desc__btn btn"
-                >
-                  <i class="fas fa-trash-alt"></i>
-                </button>
-              </figcaption>
-            </figure>
-          </div>
-
+          <div
+            id="displayShoppingList"
+            class="shopping-list__display-items-selected"
+          ></div>
           <div class="shopping-list__total">
             <h3 class="shopping-list__total__heading">
-              Total :&nbsp;<span>1</span>&nbsp;article(s)
+              Total :&nbsp;<span id="displayTotalItemsNumber">1</span
+              >&nbsp;article(s)
             </h3>
             <p class="shopping-list__total__price">
-              <span id="">30</span>&nbsp;€
+              <span id="displayOrderAmount">30</span>&nbsp;€
             </p>
           </div>
         </section>
@@ -173,7 +132,12 @@
             <div class="buttons">
               <input type="submit" value="Passer ma commande" class="btn" />
               <input type="reset" value="Annuler la saisie" class="btn" />
-              <input type="button" value="Annuler la commande" class="btn" />
+              <input
+                type="button"
+                value="Annuler la commande"
+                class="btn"
+                id="resetShoppingList"
+              />
             </div>
           </form>
         </section>
