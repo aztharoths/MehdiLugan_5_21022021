@@ -10,8 +10,15 @@ const displayHeadingItemsNumber = document.querySelector(
 const displayTotalItemsNumber = document.querySelector(
   "#displayTotalItemsNumber"
 );
+
 //création et insèrtion d'un modèle d'item
-const addItemSaved = (itemImageUrl, itemName, itemOption, itemPrice) => {
+const addItemSaved = (
+  itemImageUrl,
+  itemName,
+  itemOption,
+  itemQuantity,
+  itemPrice
+) => {
   const addItemSaved = `<figure
     class="shopping-list__display-items-selected__items-selected"
     
@@ -35,7 +42,8 @@ const addItemSaved = (itemImageUrl, itemName, itemOption, itemPrice) => {
         
       >
         ${itemOption}
-      </p>      
+      </p>
+      <p>Quantité :&nbsp${itemQuantity}</p>      
       <p
         class="shopping-list__display-items-selected__items-selected__desc__price-u"
       >
@@ -59,24 +67,26 @@ if (savedItems == null) {
   <section class="oops"><img class="oops__img" src="../img/oops.jpeg"/></section>`;
 } else {
   //si le panier comprend au moins un article
-  const totalItems = savedItems.length; //compter les articles
-  displayHeadingItemsNumber.innerHTML = totalItems; //afficher le nombre dans le titre
-  displayTotalItemsNumber.innerHTML = totalItems; //afficher le nombre dans le récap
-  const displayOrderAmount = document.querySelector("#displayOrderAmount"); //zone d'affichage du prix total
   let orderAmount = 0; //initialiser le prix total à 0
-  for (let i = 0; i < totalItems; i++) {
+  let totalItems = 0; //initialiser le nombre d'article à 0
+  savedItems.forEach((item) => {
     //pour chaque item
     addItemSaved(
       //remplir la carte avec ses infos
-      savedItems[i].itemSelectedImageUrl,
-      savedItems[i].itemSelectedName,
-      savedItems[i].itemSelectedOption,
-      savedItems[i].itemSelectedPrice
+      item.imageUrl,
+      item.name,
+      item.option,
+      item.quantity,
+      item.price * item.quantity
     );
     //ajouter son prix au prix total
-    orderAmount = orderAmount + savedItems[i].itemSelectedPrice;
-  } //afficher le prix total quand tout est compté
-  displayOrderAmount.innerHTML = orderAmount;
+    orderAmount = orderAmount + item.price;
+    totalItems = totalItems + item.quantity;
+  });
+  displayHeadingItemsNumber.innerHTML = totalItems; //afficher le nombre d'articles dans le titre
+  displayTotalItemsNumber.innerHTML = totalItems; //afficher le nombre d'articles dans le récap
+  const displayOrderAmount = document.querySelector("#displayOrderAmount"); //zone d'affichage du prix total
+  displayOrderAmount.innerHTML = orderAmount; //afficher le prix total quand tout est compté
   document //selectionner le bouton "annuler la commande"
     .querySelector("#resetShoppingList")
     .addEventListener("click", (event) => {
@@ -93,3 +103,4 @@ if (savedItems == null) {
   let toTrash = document.querySelectorAll(".toTrash");
   console.log(toTrash);
 }
+//----------------------------------CHANGER LE NOMBRE D'ARTICLES DEPUIS LE PANIER-----------------------------------//

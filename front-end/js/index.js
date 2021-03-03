@@ -1,15 +1,28 @@
 // Zone de création
 const displayItemList = document.querySelector("#itemList");
 
+const teddyButton = document.getElementById("teddyButton");
+const camButton = document.querySelector("#camButton");
+const oakButton = document.querySelector("#oakButton");
+
+const url = ["teddies", "cameras", "furniture"];
+
+teddyButton.addEventListener("click", (e) => {
+  getItem(url[0]);
+});
+
+camButton.addEventListener("click", (e) => {
+  getItem(url[1]);
+});
+
+oakButton.addEventListener("click", (e) => {
+  getItem(url[2]);
+});
+
+window.onload = getItem(url[0]);
+
 //création d'une carte pour un item
-const addItem = (
-  itemType,
-  itemOptions,
-  item_id,
-  itemUrlImg,
-  itemName,
-  itemDescription
-) => {
+const addItem = (type, item_id, itemUrlImg, itemName, itemDescription) => {
   // Modele d'une carte
   const addItem = `<figure class="item-list__item">
             <img
@@ -24,7 +37,7 @@ const addItem = (
               </p>
               <a
                 class="item-list__item__desc__btn btn"
-                href="./front-end/pages/produit.html?type=${itemType}&options=${itemOptions}&id=${item_id}"
+                href="./front-end/pages/produit.html?type=${type}&id=${item_id}"
                 >Voir le produit</a
               >
             </figcaption>
@@ -34,17 +47,19 @@ const addItem = (
 };
 
 // récupération des informations et création des cartes
-const getItem = (url, itemType, itemOptions) => {
-  fetch(url).then(async (response) => {
+async function getItem(url) {
+  try {
+    //j'attend la réponse du server
+    const response = await fetch("http://localhost:3000/api/" + url);
     try {
+      //je transforme la réponse en format json
       const itemsList = await response.json();
       // Je supprime le contenu de la zone de création de cartes
       displayItemList.innerHTML = "";
       //création d'autant de cartes que d'items trouvés dans le tableau
       for (i = 0; i < itemsList.length; i++) {
         addItem(
-          itemType,
-          itemOptions,
+          url,
           itemsList[i]._id,
           itemsList[i].imageUrl,
           itemsList[i].name,
@@ -54,30 +69,7 @@ const getItem = (url, itemType, itemOptions) => {
     } catch (e) {
       console.log(e);
     }
-  });
-};
-
-const teddyButton = document.querySelector("#teddyButton");
-const camButton = document.querySelector("#camButton");
-const oakButton = document.querySelector("#oakButton");
-
-const teddiesUrl = "http://localhost:3000/api/teddies";
-const camUrl = "http://localhost:3000/api/cameras";
-const oakUrl = "http://localhost:3000/api/furniture";
-
-const itemsType = ["teddies", "cameras", "furniture"];
-const itemsOptions = ["colors", "lenses", "varnish"];
-
-teddyButton.addEventListener("click", (e) => {
-  getItem(teddiesUrl, itemsType[0], itemsOptions[0]);
-});
-
-camButton.addEventListener("click", (e) => {
-  getItem(camUrl, itemsType[1], itemsOptions[1]);
-});
-
-oakButton.addEventListener("click", (e) => {
-  getItem(oakUrl, itemsType[2], itemsOptions[2]);
-});
-
-window.onload = getItem(teddiesUrl, itemsType[0], itemsOptions[0]);
+  } catch (e) {
+    console.log(e);
+  }
+}
