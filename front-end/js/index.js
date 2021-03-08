@@ -36,7 +36,7 @@ function addItem(type, item_id, itemUrlImg, itemName, itemDescription) {
               </p>
               <a
                 class="item-list__item__desc__btn btn"
-                href="./front-end/pages/produit.html?type=${type}&id=${item_id}"
+                href="./pages/produit.html?type=${type}&id=${item_id}"
                 >Voir le produit</a
               >
             </figcaption>
