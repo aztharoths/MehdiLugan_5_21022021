@@ -1,6 +1,5 @@
 // Zone de création
 const displayItemList = document.querySelector("#itemList");
-
 const teddyButton = document.getElementById("teddyButton");
 const camButton = document.querySelector("#camButton");
 const oakButton = document.querySelector("#oakButton");
@@ -22,7 +21,7 @@ oakButton.addEventListener("click", (e) => {
 window.onload = getItem(url[0]);
 
 //création d'une carte pour un item
-const addItem = (type, item_id, itemUrlImg, itemName, itemDescription) => {
+function addItem(type, item_id, itemUrlImg, itemName, itemDescription) {
   // Modele d'une carte
   const addItem = `<figure class="item-list__item">
             <img
@@ -44,7 +43,7 @@ const addItem = (type, item_id, itemUrlImg, itemName, itemDescription) => {
           </figure>`;
   // insertion du modele dans la zone de création
   displayItemList.insertAdjacentHTML("beforeend", addItem);
-};
+}
 
 // récupération des informations et création des cartes
 async function getItem(url) {
@@ -72,4 +71,14 @@ async function getItem(url) {
   } catch (e) {
     console.log(e);
   }
+}
+
+const displayMyCart = document.querySelector("#myCart");
+const savedItems = JSON.parse(localStorage.getItem("savedItem"));
+let totalItems = 0;
+savedItems.forEach((item) => {
+  totalItems += item.quantity;
+});
+if (totalItems != 0) {
+  displayMyCart.innerHTML = "(" + totalItems + ")";
 }

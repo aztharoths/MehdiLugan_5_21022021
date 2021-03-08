@@ -173,3 +173,15 @@ if (totalItems != 0) {
   //si il y as des articles dans le panier, j'affiche le nombre d'article dans le header
   displayMyCart.innerHTML = "(" + totalItems + ")";
 }
+//----------------------------------GESTION DU FORMULAIRE DE COMMANDE-----------------------------------//
+
+const formInput = document.getElementsByTagName("input");
+
+formInput["lastName"].addEventListener("input", (event) => {
+  console.log(event.data);
+  function isValid(value) {
+    return /[a-zA-Z]/.test(value);
+  }
+  isValid(event.data);
+  console.log(isValid(event.data));
+});

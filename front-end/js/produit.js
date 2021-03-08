@@ -95,6 +95,8 @@ function addItemToShoppingList(item) {
   addToShoppingListButton.addEventListener("click", (event) => {
     //Récupération de l'option choisie
     const optionSelected = document.querySelector("#itemOptions").value;
+    //Création d'une id interne pour la gestion du panier
+    const localId = item.name.substr(0, 3) + optionSelected.substr(0, 3);
     //Récupération des informations du produit
     const itemSelected = {
       imageUrl: item.imageUrl,
@@ -103,6 +105,7 @@ function addItemToShoppingList(item) {
       price: item.price / 100,
       quantity: 1,
       type: itemType,
+      id: localId,
     };
     //Récupération des données du localstorage pour le tableau "savedItem"
     const savedItems = JSON.parse(localStorage.getItem("savedItem"));
@@ -144,4 +147,14 @@ function addItemToShoppingList(item) {
       window.location.href = "../../index.html";
     }
   });
+}
+
+const displayMyCart = document.querySelector("#myCart");
+const savedItems = JSON.parse(localStorage.getItem("savedItem"));
+let totalItems = 0;
+savedItems.forEach((item) => {
+  totalItems += item.quantity;
+});
+if (totalItems != 0) {
+  displayMyCart.innerHTML = "(" + totalItems + ")";
 }

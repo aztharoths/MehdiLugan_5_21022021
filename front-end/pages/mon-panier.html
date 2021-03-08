@@ -34,7 +34,9 @@
         </div>
         <nav>
           <a href="../../index.html" class="btn">Accueil</a>
-          <a href="./mon-panier.html" class="btn">Mon Panier</a>
+          <a href="./mon-panier.html" class="btn"
+            >Mon Panier <span id="myCart"></span
+          ></a>
         </nav>
       </header>
       <main class="main">
@@ -65,8 +67,8 @@
               <legend>Coordonnées</legend>
               <label for="name">Nom :</label>
               <input
-                id="name"
-                name="name"
+                id="lastName"
+                name="lastName"
                 type="text"
                 placeholder="Lugan"
                 required
@@ -74,24 +76,16 @@
               <label for="first-name">Prénom :</label>
               <input
                 type="text"
-                id="first-name"
-                name="first-name"
+                id="firstName"
+                name="firstName"
                 required
                 placeholder="Mehdi"
               />
-              <label for="birth-date">Date de naissance :</label>
-              <input
-                type="date"
-                name="birth-date"
-                id="birth-date"
-                required
-                placeholder="05/05/1991"
-              />
-              <label for="mail">E-mail :</label>
+              <label for="email">E-mail :</label>
               <input
                 type="email"
-                name="mail"
-                id="mail"
+                name="email"
+                id="email"
                 required
                 placeholder="mehdi.lugan@gmail.com"
               />
@@ -106,14 +100,6 @@
                 row="2"
                 required
                 placeholder="187 rue du Général de gaulle"
-              />
-              <label for="postal">Code postal :</label>
-              <input
-                type="number"
-                name="postal"
-                id="postal"
-                required
-                placeholder="69530"
               />
               <label for="city">Ville :</label>
               <input
