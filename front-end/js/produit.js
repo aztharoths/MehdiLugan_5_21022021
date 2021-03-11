@@ -148,13 +148,3 @@ function addItemToShoppingList(item) {
     }
   });
 }
-
-const displayMyCart = document.querySelector("#myCart");
-const savedItems = JSON.parse(localStorage.getItem("savedItem"));
-let totalItems = 0;
-savedItems.forEach((item) => {
-  totalItems += item.quantity;
-});
-if (totalItems != 0) {
-  displayMyCart.innerHTML = "(" + totalItems + ")";
-}

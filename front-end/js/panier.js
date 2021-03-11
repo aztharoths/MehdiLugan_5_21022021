@@ -14,6 +14,82 @@ const displayOrderAmount = document.querySelector("#displayOrderAmount"); //zone
 let orderAmount = 0; //initialiser le prix total à 0
 let totalItems = 0; //initialiser le nombre d'article à 0
 
+//----------------------------------GESTION DU FORMULAIRE DE COMMANDE-----------------------------------//
+
+const formOrder = document.querySelector("#formOrder");
+formOrder.addEventListener("submit", (order) => {
+  const formInput = document.getElementsByTagName("input");
+  const displayMessage = document.getElementsByClassName("displayMessage");
+  const emptyMessage = `<i class="fas fa-arrow-up"></i>&nbspVeuillez renseigner ce champ&nbsp<i class="fas fa-arrow-up"></i>`;
+  const badValueMessage = `<i class="fas fa-arrow-up"></i>&nbspMerci de renseigner ce champ correctement !&nbsp<i class="fas fa-arrow-up"></i>`;
+  const regText = /^[a-zA-zâäàêëéèîïôöœûü-\s]+$/;
+  const regMail = /^[\w\.-]+@[\w-]+\.[a-zA-Z]{1,3}$/;
+  const regAddress = /^[a-zA-z\s0-9âäàêëéèîïôöœûü-]+$/;
+  order.preventDefault();
+  if (formInput[0].value == "") {
+    displayMessage[0].innerHTML = emptyMessage;
+  } else if (regText.test(formInput[0].value) == false) {
+    displayMessage[0].innerHTML = badValueMessage;
+  } else {
+    displayMessage[0].innerHTML = "";
+    if (formInput[1].value == "") {
+      displayMessage[1].innerHTML = emptyMessage;
+    } else if (regText.test(formInput[1].value) == false) {
+      displayMessage[1].innerHTML = badValueMessage;
+    } else {
+      displayMessage[1].innerHTML = "";
+      if (formInput[2].value == "") {
+        displayMessage[2].innerHTML = emptyMessage;
+      } else if (regMail.test(formInput[2].value) == false) {
+        displayMessage[2].innerHTML = badValueMessage;
+      } else {
+        displayMessage[2].innerHTML = "";
+        if (formInput[3].value == "") {
+          displayMessage[3].innerHTML = emptyMessage;
+        } else if (regAddress.test(formInput[3].value) == false) {
+          displayMessage[3].innerHTML = badValueMessage;
+        } else {
+          displayMessage[3].innerHTML = "";
+          if (formInput[4].value == "") {
+            displayMessage[4].innerHTML = emptyMessage;
+          } else if (regText.test(formInput[4].value) == false) {
+            displayMessage[4].innerHTML = badValueMessage;
+          } else {
+            displayMessage[4].innerHTML = "";
+          }
+        }
+      }
+    }
+  }
+});
+
+function command(formInput) {
+  let customerInfos = {
+    lastname: formInput["lastName"].value,
+    firstName: formInput["firstName"].value,
+    email: formInput["email"].value,
+    address: formInput["address"].value,
+    city: formInput["city"].value,
+  };
+  localStorage.setItem("customerInfos", JSON.stringify(customerInfos));
+  let teddiesOrdered = [];
+  let camerasOrdered = [];
+  let oakOrdered = [];
+  savedItems.forEach((item) => {
+    if (item.type == "teddies") {
+      teddiesOrdered.push(item);
+    } else if (item.type == "cameras") {
+      camerasOrdered.push(item);
+    } else if (item.type == "furniture") {
+      oakOrdered.push(item);
+    }
+  });
+  localStorage.setItem("teddiesOrdered", JSON.stringify(teddiesOrdered));
+  localStorage.setItem("camerasOrdered", JSON.stringify(camerasOrdered));
+  localStorage.setItem("oakOrdered", JSON.stringify(oakOrdered));
+}
+
+//----------------------------------GESTION DU PANIER-----------------------------------//
 //création et insèrtion d'un modèle d'item
 const addItemSaved = (
   itemImageUrl,
@@ -167,21 +243,3 @@ for (let i = 0; i < savedItems.length; i++) {
     }
   });
 }
-
-const displayMyCart = document.querySelector("#myCart");
-if (totalItems != 0) {
-  //si il y as des articles dans le panier, j'affiche le nombre d'article dans le header
-  displayMyCart.innerHTML = "(" + totalItems + ")";
-}
-//----------------------------------GESTION DU FORMULAIRE DE COMMANDE-----------------------------------//
-
-const formInput = document.getElementsByTagName("input");
-
-formInput["lastName"].addEventListener("input", (event) => {
-  console.log(event.data);
-  function isValid(value) {
-    return /[a-zA-Z]/.test(value);
-  }
-  isValid(event.data);
-  console.log(isValid(event.data));
-});
