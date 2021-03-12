@@ -19,7 +19,7 @@ let totalItems = 0; //initialiser le nombre d'article à 0
 const formOrder = document.querySelector("#formOrder"); //formulaire html
 const formInput = document.getElementsByTagName("input"); // tous les input du formulaire
 const displayMessage = document.getElementsByClassName("displayMessage"); //zonne d'affichage des maessage d'erreur
-const infos = JSON.parse(localStorage.getItem("customerInfos")); // récupération des informations de l'utilisateur (si elles existent, sinon vaut null)
+const infos = JSON.parse(localStorage.getItem("contact")); // récupération des informations de l'utilisateur (si elles existent, sinon vaut null)
 if (infos) {
   //si les informations de l'utilisateur existent
   //On remplis les champs du formulaire par ces infos
@@ -37,8 +37,8 @@ formOrder.addEventListener("submit", (order) => {
   const regMail = /^[\w\.-]+@[\w-]+\.[a-zA-Z]{1,3}$/;
   const regAddress = /^[a-zA-Z\s0-9âäàêëéèîïôöœûü-]+$/;
   order.preventDefault(); //j'annule l'effet de base du bouton
+  let testsToBePassed = formInput.length; //je déclare le nombre de tests à passer grâce au nombre de champs à remplir (pour une meilleur maintenabilitée);
   let testPassed = 0; //je crée une variable qui compte le nombre de RegEx passées
-  let testToBePassed = formInput.length; //je déclare le nombre de tests à passer grâce au nombre de champs à remplir (pour une meilleur maintenabilitée);
   if (formInput[0].value == "") {
     //je vérifie que le premier champ ne soit pas vide
     displayMessage[0].innerHTML = emptyMessage; //si il est vide j'informe l'utilisteur qu'il doit le remplir
@@ -85,7 +85,7 @@ formOrder.addEventListener("submit", (order) => {
     testPassed++;
   }
 
-  if (testPassed === testToBePassed) {
+  if (testPassed === testsToBePassed) {
     //si tous les tests sont passés
     let contact = {
       //je crée un objet des valeurs des champs du formulaire
@@ -97,57 +97,78 @@ formOrder.addEventListener("submit", (order) => {
     };
     localStorage.setItem(
       //j'envois cet objet dans le localStorage
-      "customerInfos",
-      JSON.stringify(customerInfos)
+      "contact",
+      JSON.stringify(contact)
     );
-    async function postOrder(type, products) {
-      //fonction pour envoyer la commande en fonction du type d'objet
-      let response = await fetch(
-        "http://localhost:3000/api/" + type + "/order",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ contact, products }),
-        }
-      );
-      console.log(response);
-    }
-    //je crée un tableau par type d'objet
-    let teddiesOrdered = [];
-    let camerasOrdered = [];
-    let oakOrdered = [];
+
+    let previewOrder = [];
     savedItems.forEach((item) => {
-      //je controle les objets du panier
-      if (item.type == "teddies") {
-        //si c'est un ours
-        for (let i = 0; i < item.quantity; i++) {
-          //je compte la quantité de cet ours
-          teddiesOrdered.push(item._id); //pour chaque ours j'ajoute son id dans le tableau correspondant
-        }
-      } else if (item.type == "cameras") {
-        for (let i = 0; i < item.quantity; i++) {
-          camerasOrdered.push(item._id);
-        }
-      } else if (item.type == "furniture") {
-        for (let i = 0; i < item.quantity; i++) {
-          oakOrdered.push(item._id);
+      previewOrder.push(item.quantity + " X " + item.name);
+    });
+
+    if (window.confirm("Validez vous cette commande ?" + previewOrder)) {
+      const orderSummary = [];
+      async function postOrder(type, products) {
+        //fonction pour envoyer la commande en fonction du type d'objet
+        let response = await fetch(
+          "http://localhost:3000/api/" + type + "/order",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ contact, products }),
+          }
+        );
+        try {
+          let validation = await response.json();
+          orderSummary.push(validation);
+          localStorage.setItem("orderSummary", JSON.stringify(orderSummary));
+          console.log(orderSummary);
+        } catch (e) {
+          console.log(e);
         }
       }
-    });
-    if (teddiesOrdered != "") {
-      //je vérifie que le tableau des ours commandés ne soit pas vide
-      let products = teddiesOrdered; //je renomme le tableau en le nom attendu par le serveur
-      postOrder("teddies", products); //j'envois la commande
-    }
-    if (camerasOrdered != "") {
-      let products = camerasOrdered;
-      postOrder("cameras", products);
-    }
-    if (oakOrdered != "") {
-      let products = oakOrdered;
-      postOrder("furniture", products);
+      //je crée un tableau par type d'objet
+      let teddiesOrdered = [];
+      let camerasOrdered = [];
+      let oakOrdered = [];
+      savedItems.forEach((item) => {
+        //je controle les objets du panier
+        if (item.type == "teddies") {
+          //si c'est un ours
+          for (let i = 0; i < item.quantity; i++) {
+            //je compte la quantité de cet ours
+            teddiesOrdered.push(item._id); //pour chaque ours j'ajoute son id dans le tableau correspondant
+          }
+        } else if (item.type == "cameras") {
+          for (let i = 0; i < item.quantity; i++) {
+            camerasOrdered.push(item._id);
+          }
+        } else if (item.type == "furniture") {
+          for (let i = 0; i < item.quantity; i++) {
+            oakOrdered.push(item._id);
+          }
+        }
+      });
+      if (teddiesOrdered != "") {
+        //je vérifie que le tableau des ours commandés ne soit pas vide
+        let products = teddiesOrdered; //je renomme le tableau en le nom attendu par le serveur
+        postOrder("teddies", products); //j'envois la commande
+      }
+      if (camerasOrdered != "") {
+        let products = camerasOrdered;
+        postOrder("cameras", products);
+      }
+      if (oakOrdered != "") {
+        let products = oakOrdered;
+        postOrder("furniture", products);
+      }
+
+      setTimeout(() => {
+        window.location.href = "./confirmation-commande.html";
+        localStorage.removeItem("savedItem");
+      }, 1000);
     }
   }
 });

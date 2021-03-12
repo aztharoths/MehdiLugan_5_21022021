@@ -145,7 +145,7 @@ function addItemToShoppingList(item) {
       window.location.href = "./mon-panier.html";
     } else {
       //si l'usager refuse, je le redirige vers l'accueil
-      window.location.href = "../../index.html";
+      window.location.href = "../index.html";
     }
   });
 }
