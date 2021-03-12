@@ -106,6 +106,7 @@ function addItemToShoppingList(item) {
       quantity: 1,
       type: itemType,
       id: localId,
+      _id: item._id,
     };
     //Récupération des données du localstorage pour le tableau "savedItem"
     const savedItems = JSON.parse(localStorage.getItem("savedItem"));
