@@ -167,6 +167,7 @@ formOrder.addEventListener("submit", (order) => {
 
       setTimeout(() => {
         window.location.href = "./confirmation-commande.html";
+        localStorage.setItem("orderSummaryPerso", JSON.stringify(savedItems));
         localStorage.removeItem("savedItem");
       }, 1000);
     }
