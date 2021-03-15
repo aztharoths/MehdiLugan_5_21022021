@@ -9,6 +9,8 @@ const displayItemName = document.querySelector("#displayItemName");
 
 // Zone de création
 const displayItem = document.querySelector("#displayItem");
+//initialisation de la quantité de l'item
+let quantity = 1;
 
 //création d'une carte pour l'item
 const addItem = (itemUrlImg, itemName, itemDescription, price) => {
@@ -17,17 +19,18 @@ const addItem = (itemUrlImg, itemName, itemDescription, price) => {
   <img src="${itemUrlImg}" alt="" class="item__img" />
   <figcaption class="item__desc">
     <h2 class="item__desc__heading">${itemName}</h2>
-    <p class="item__desc__txt">${itemDescription}</p>    
-    <form class="item__desc__options">
-    <label class="item__desc__options__name" id="optionsName" for="itemOptions"></label>
-    <select class="item__desc__options__selector" name="itemOptions" id="itemOptions">
+    <p class="item__desc__txt">${itemDescription}</p>
+    <div class="item__desc__infos"><form class="item__desc__infos__options">
+    <label class="item__desc__infos__options__name" id="optionsName" for="itemOptions"></label>
+    <select class="item__desc__infos__options__selector" name="itemOptions" id="itemOptions">
     </select>
-    <p class="item__desc__options__price">Prix :&nbsp;<span>${price}</span> € </p>
-    </form>        
-    <div class="item__desc__btn-div"> <button type="button" class="item__desc__btn-div__btn btn" id="addToShoppingListButton">
+    </form> 
+    <p class="item__desc__infos__quantity"><span id="decrement" class="btn">-</span>Quantité :&nbsp<span id="displayQuantity"></span><span id="increment" class="btn">+</span></p>        
+    <p class="item__desc__infos__price">Prix :&nbsp;<span id="displayPrice">${price}</span> € </p>
+    <button type="button" class="item__desc__infos__btn btn" id="addToShoppingListButton">
     Ajouter au Panier
-  </button> </div>
-    
+  </button></div>   
+        
   </figcaption>
   </figure>`;
   // insertion du modele dans la zone de création
@@ -67,9 +70,28 @@ async function getItem(type, id) {
         let addOption = `<option class="item__desc__options__selector__selection" value="${itemOption}">${itemOption}</option`;
         displayItemOptions.insertAdjacentHTML("beforeend", addOption);
       });
+      //Gestion quantite
+      const displayQuantity = document.querySelector("#displayQuantity");
+      const displayPrice = document.querySelector("#displayPrice");
+      const decrement = document.querySelector("#decrement");
+      const increment = document.querySelector("#increment");
+
+      displayQuantity.innerHTML = quantity;
+      decrement.addEventListener("click", (e) => {
+        if (quantity > 1) {
+          quantity--;
+          displayQuantity.innerHTML = quantity;
+          displayPrice.innerHTML = (quantity * item.price) / 100;
+        }
+      });
+      increment.addEventListener("click", (e) => {
+        quantity++;
+        displayQuantity.innerHTML = quantity;
+        displayPrice.innerHTML = (quantity * item.price) / 100;
+      });
 
       //Gestion du panier
-      addItemToShoppingList(item);
+      addItemToShoppingList(item, quantity);
     } catch (e) {
       console.error(e);
     }
@@ -80,7 +102,7 @@ async function getItem(type, id) {
 
 const itemsTypes = ["teddies", "cameras", "furniture"];
 
-//---------------------------------AFFICHAGE DES OPTIONS----------------------------------------//
+//---------------------------------GESTION QUANTITE----------------------------------------//
 
 //---------------------------------GESTION DU PANIER----------------------------------------//
 
@@ -103,7 +125,7 @@ function addItemToShoppingList(item) {
       name: item.name,
       option: optionSelected,
       price: item.price / 100,
-      quantity: 1,
+      quantity: quantity,
       type: itemType,
       id: localId,
       _id: item._id,

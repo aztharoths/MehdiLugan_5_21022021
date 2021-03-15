@@ -31,37 +31,119 @@
       padding: 0px 10px;
       text-align: center;
     }
-    &__options {
-      @include size(50%);
-      font-size: 1.5rem;
+    &__infos {
+      @include size(100%, 50%);
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-evenly;
       align-items: center;
-      &__name {
-        font-size: 2rem;
-        @include size(50%, 25%);
-        padding-left: 50px;
-      }
-      &__selector {
+      flex-wrap: wrap;
+      &__options {
+        @include size(50%, 50px);
+
         font-size: 1.5rem;
-        border: 2px solid $clr-primary;
-        border-radius: 20px;
-        @include size(50%, 25%);
-        &__selection {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        &__name {
+          font-size: 2rem;
+          @include size(50%, 100%);
+          padding-left: 50px;
+        }
+        &__selector {
+          font-size: 1.5rem;
+          border: 2px solid $clr-primary;
+          border-radius: 20px;
+          @include size(50%, 100%);
+        }
+      }
+      &__quantity {
+        @include size(50%, 50px);
+        @include center;
+        font-size: 1.5rem;
+        .btn {
+          @include size(40px);
+          @include center;
+          margin: 0 10px;
         }
       }
       &__price {
-        @include size(100%, 50%);
+        @include size(50%, 50px);
         @include center;
         font-size: 2rem;
       }
-    }
 
-    &__btn-div {
-      @include center;
-      @include size(50%);
       &__btn {
-        padding: 0 20px;
+        @include size(40%, 50px);
+      }
+    }
+  }
+}
+
+@include media(1024px) {
+  .item {
+    width: 90%;
+  }
+}
+@include media(900px) {
+  .item {
+    @include size(90%, 500px);
+    &__img {
+      height: 40%;
+    }
+    &__desc {
+      height: 60%;
+      &__txt {
+        font-size: 1.2rem;
+      }
+      &__infos {
+        &__options {
+          &__name {
+            font-size: 1.2rem;
+            @include center;
+          }
+          &__selector {
+            font-size: 1.2rem;
+          }
+        }
+        &__btn {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+}
+@include media(650px) {
+  .item {
+    height: 1000px;
+    &__desc {
+      &__txt {
+        font-size: 1rem;
+      }
+      &__infos {
+        flex-direction: column;
+        &__options,
+        &__quantity,
+        &__price,
+        &__btn {
+          @include size(100%, 25%);
+        }
+        &__options {
+          &__name {
+            padding: 0;
+          }
+
+          &__selector {
+            height: 50%;
+            width: 40%;
+          }
+        }
+        &__price {
+          font-size: 1.5rem;
+        }
+        &__btn {
+          font-size: 1.2rem;
+          margin-bottom: -5px;
+        }
       }
     }
   }
