@@ -215,7 +215,7 @@ const addItemSaved = (
         Prix :&nbsp; <span id="price${id}">${itemPrice}</span>&nbsp;€
       </p>      
       <button
-        class="shopping-list__display-items-selected__items-selected__desc__btn btn"
+        class="shopping-list__display-items-selected__items-selected__desc__trash btn"
         id="toTrash${id}"
       >
         <i class="fas fa-trash-alt"></i>

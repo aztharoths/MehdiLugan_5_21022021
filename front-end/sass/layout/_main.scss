@@ -13,3 +13,11 @@
     border-radius: 50px;
   }
 }
+
+@include media(1000px) {
+  .main {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}

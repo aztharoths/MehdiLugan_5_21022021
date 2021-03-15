@@ -3,8 +3,9 @@
   background-color: $clr-secondary;
   padding: 20px 0;
   box-shadow: 2px 0px 10px lightness-shift();
+  width: 100%;
   &__logo {
-    width: calc(100% - 450px);
+    width: calc(100% - 500px);
     a:hover,
     a:active,
     a:focus {
@@ -22,9 +23,47 @@
   nav {
     display: flex;
     justify-content: space-between;
-    width: 350px;
+    width: 400px;
     a {
       padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+@include media(900px) {
+  .header {
+    flex-direction: column;
+    &__logo {
+      width: 100%;
+      @include center;
+    }
+  }
+}
+
+@include media(460px) {
+  .header {
+    nav {
+      flex-direction: column;
+      width: 80%;
+      a {
+        margin: 10px 0;
+        justify-content: center;
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+}
+
+@include media(400px) {
+  .header {
+    &__logo {
+      img {
+        transform: scale(0.8);
+      }
     }
   }
 }
