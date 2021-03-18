@@ -91,7 +91,7 @@ async function getItem(type, id) {
       });
 
       //Gestion du panier
-      addItemToShoppingList(item, quantity);
+      addItemToShoppingList(item);
     } catch (e) {
       console.error(e);
     }
@@ -101,8 +101,6 @@ async function getItem(type, id) {
 }
 
 const itemsTypes = ["teddies", "cameras", "furniture"];
-
-//---------------------------------GESTION QUANTITE----------------------------------------//
 
 //---------------------------------GESTION DU PANIER----------------------------------------//
 
