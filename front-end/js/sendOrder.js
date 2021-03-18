@@ -27,6 +27,7 @@ function createContact() {
     "contact",
     JSON.stringify(contact)
   );
+  return contact;
 }
 
 formOrder.addEventListener("submit", (order) => {
@@ -35,7 +36,7 @@ formOrder.addEventListener("submit", (order) => {
   let testPassed = document.getElementsByClassName("valid").length; //je crée une variable qui compte le nombre de RegEx passées
   if (testPassed === testsToBePassed) {
     //si tous les tests sont passés
-    createContact();
+    let contact = createContact();
     let previewOrder = []; //création d'un tableau pour afficher un aperçu de la commande avant validation
     savedItems.forEach((item) => {
       //remplissage du tableau
