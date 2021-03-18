@@ -13,7 +13,7 @@ const displayItem = document.querySelector("#displayItem");
 let quantity = 1;
 
 //création d'une carte pour l'item
-const addItem = (itemUrlImg, itemName, itemDescription, price) => {
+function addItem(itemUrlImg, itemName, itemDescription, price) {
   // Modele de la carte
   const addItem = `<figure class="item">
   <img src="${itemUrlImg}" alt="" class="item__img" />
@@ -35,7 +35,7 @@ const addItem = (itemUrlImg, itemName, itemDescription, price) => {
   </figure>`;
   // insertion du modele dans la zone de création
   displayItem.insertAdjacentHTML("beforeend", addItem);
-};
+}
 
 window.onload = getItem(itemType, itemId);
 

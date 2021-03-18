@@ -691,6 +691,20 @@
     font-size: 1.2rem;
   }
 }
+.valid {
+  border: 1px solid green;
+}
+.valid:focus {
+  outline: 1px solid green;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+.invalid:focus {
+  outline: 1px solid red;
+}
+
 .confirmation {
   display: flex;
   justify-content: center;

@@ -216,3 +216,17 @@
     }
   }
 }
+
+.valid {
+  border: 1px solid green;
+  &:focus {
+    outline: 1px solid green;
+  }
+}
+
+.invalid {
+  border: 1px solid red;
+  &:focus {
+    outline: 1px solid red;
+  }
+}
