@@ -134,7 +134,7 @@ function addItemToShoppingList(item) {
     if (
       //si l'usager confirme
       window.confirm(
-        `Vous avez selectionné ${item.name} et ${optionSelected} voulez vous confirmer ?`
+        `Vous avez selectionné ${item.name} avec l'option ${optionSelected} en ${quantity} exemplaire(s) voulez vous confirmer ?`
       )
     ) {
       //je vérifie qu'il y ai le tableau dans le localstorage
@@ -144,7 +144,7 @@ function addItemToShoppingList(item) {
           //si il existe, je vérifie si l'objet ajouté existe déjà dans le tableau
 
           if (e.name == itemSelected.name && e.option == itemSelected.option) {
-            e.quantity++; //si oui, j'incrémente
+            e.quantity += quantity; //si oui, j'incrémente
             alreadyExist = true;
             return false; //je sort de la boucle
           }
@@ -163,9 +163,6 @@ function addItemToShoppingList(item) {
         localStorage.setItem("savedItem", JSON.stringify(savedItems));
       } //je redirige l'usager vers le panier
       window.location.href = "./mon-panier.html";
-    } else {
-      //si l'usager refuse, je le redirige vers l'accueil
-      window.location.href = "../index.html";
     }
   });
 }

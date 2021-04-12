@@ -26,7 +26,6 @@ function addItemSaved(
 ) {
   const addItemSaved = `<figure
     class="shopping-list__display-items-selected__items-selected"
-    
   >
     <img
       class="shopping-list__display-items-selected__items-selected__img"
@@ -99,9 +98,6 @@ if (savedItems == null || savedItems.length == 0) {
       if (window.confirm("Vous allez vider votre panier !")) {
         //si oui
         localStorage.clear(); //vider le panier
-        document.location.reload(); //recharger la page
-      } else {
-        //si non
         document.location.reload(); //recharger la page
       }
     });

@@ -99,12 +99,12 @@ formOrder.addEventListener("submit", (order) => {
         let products = teddiesOrdered; //je renomme le tableau en le nom attendu par le serveur
         postOrder("teddies", products); //j'envois la commande
       }
-      if (camerasOrdered != "") {
+      if (camerasOrdered.length > 0) {
         arrayToFill++;
         let products = camerasOrdered;
         postOrder("cameras", products);
       }
-      if (oakOrdered != "") {
+      if (oakOrdered.length > 0) {
         arrayToFill++;
         let products = oakOrdered;
         postOrder("furniture", products);
